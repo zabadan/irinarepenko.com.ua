@@ -1,0 +1,211 @@
+
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0; }
+
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+ }
+
+body {
+  max-width: 90%;
+  margin: 0 auto 260px auto;
+}
+
+@mixin mySerif {
+  font-family: 'Noto Serif', 'Times New Roman', Times, serif;
+  line-height: 2em;
+}
+
+@mixin mySans {
+  font-family: 'PT Sans',  Arial, Helvetica, sans-serif;
+  line-height: 1.5em;
+}
+
+.topFoto{
+  position:relative;
+  border-radius: 4px;
+  overflow: hidden;
+  height: 300px;
+  margin-bottom: 5px;
+  & > img {
+    max-width: 100%;
+  }
+  & > .leadIn {
+    @include mySerif;
+    font-size: .85rem;
+    font-style: italic;
+    color: $secondColor;
+    position:absolute;
+    bottom:20px;
+    right: 20px;
+    padding-left: 300px;
+  }
+}
+
+@mixin complexShadow {
+ z-index: -1;
+ position: absolute;
+ content: "";
+ bottom: 15px;
+ left: 10px;
+ width: 50%;
+ top: 80%;
+ max-width:300px;
+ background: rgba(0, 0, 0, 0.7);
+ -webkit-box-shadow: 0 15px 10px rgba(0,0,0, 0.7);
+ -moz-box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
+ box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
+ -webkit-transform: rotate(-3deg);
+ -moz-transform: rotate(-3deg);
+ -o-transform: rotate(-3deg);
+ -ms-transform: rotate(-3deg);
+ transform: rotate(-3deg);
+}
+
+.lid{
+  background-color: $mainColor;
+  padding: 20px;
+  font-size: 1em;
+  margin-bottom: 0.67em;
+  //overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;
+  flex: 1;
+  border-radius: 4px;
+  position: relative;
+
+  &:before {
+    @include complexShadow;
+  }
+  &:after {
+    @include complexShadow;
+    -webkit-transform: rotate(3deg);
+    -moz-transform: rotate(3deg);
+    -o-transform: rotate(3deg);
+    -ms-transform: rotate(3deg);
+    transform: rotate(3deg);
+    right: 10px;
+    left: auto;
+  }
+}
+
+article{
+  margin-bottom: 0.67em;
+  & header {
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-align: left;
+    margin-top: 20px;
+  }
+  & p {
+    @include mySerif;
+    font-size: .85em;
+    line-height: 1.6em;
+    color: $textColor;
+    margin-top: 15px;
+  }
+  & li{
+    list-style-type: circle;
+    margin: 5px 0 0 15px;
+  }
+  & img{
+    float: right;
+    margin: 20px;
+    max-width: 40%;
+    border: 2px solid $mainColor;
+    }
+}
+
+/*----------------form---------------------*/
+
+label {
+    font-size: 1em;
+    color: $mainColor;
+    padding: 0 .33em;
+}
+
+::-webkit-input-placeholder       {color:$mainColor; @include mySans; line-height: 1.2em; font-size: 1em;}
+::-moz-placeholder                {color:$mainColor; @include mySans; line-height: 1.2em; font-size: 1em;}
+:-moz-placeholder                 {color:$mainColor; @include mySans; line-height: 1.2em; font-size: 1em;}
+:-ms-input-placeholder            {color:$mainColor; @include mySans; line-height: 1.2em; font-size: 1em;}
+
+:focus::-webkit-input-placeholder {opacity: 0; transition: opacity 0.3s ease;}
+:focus::-moz-placeholder          {opacity: 0; transition: opacity 0.3s ease;}
+:focus:-moz-placeholder           {opacity: 0; transition: opacity 0.3s ease;}
+:focus:-ms-input-placeholder      {opacity: 0; transition: opacity 0.3s ease;}
+
+textarea, select, input,{
+  padding: 5px;
+  margin-top: 0.67em;
+  vertical-align: middle;
+}
+
+.radio {
+  margin: 0 .33em 0 0;
+}
+
+.sex {
+  padding-top: 1em;
+}
+
+input[type='email']:after {
+    content: '@';
+}
+
+input[type='date'] {
+  height: 2.2em;
+  color: $mainColor;
+  &:before {
+    content: attr(placeholder) !important;
+    margin-right: .5em;
+  }
+  &:focus:before,
+  &:valid:before {
+    content: "";
+  }
+}
+
+.form-field:focus {
+  border-color: $formFocus;
+  outline: none;
+}
+
+.error-message {
+  color: $mainColor;
+  font-size: .9em;
+  margin-bottom: 15px;
+  font-style: italic;
+  background-color: $menuColor2;
+}
+
+input[type="submit"] {
+  background: $mainColor;
+  color: $textColor;
+  border-radius: 4px;
+  border: none;
+  text-shadow: $secondColor 0 0 5px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  &:hover {
+    text-shadow: $textColor 0 0 5px;
+    box-shadow: $formFocus 0 0 10px .5px;
+    color: $secondColor;
+    transition: text-shadow .3s, box-shadow .3s, color .3s;
+  }
+}
+
+aside {
+  background-color: $mainColor;
+  color: $secondColor;
+  flex-direction: row;
+  align-items: stretch;
+  &.lid{
+    cursor: default;
+  }
+}
